@@ -1,0 +1,47 @@
+{% extends 'theblog/base.html' %}
+{% block content %}
+{% load static %}
+
+    <h1>User Profile</h1>
+    <div class="card mb-3" >
+      <div class="row g-0">
+        <div class="col-md-2">
+        {% if page_view.profile_pic %}
+          <img src="{{ page_view.profile_pic.url }}" width="200" height="200">
+        {% else %}
+          <img src="{% static 'theblog/images/generaldp.png' %}" width="200" height="200">
+        {% endif %}
+        </div>
+        <div class="col-md-10">
+          <div class="card-body">
+            <h5 class="card-title">
+                {{ page_view.first_name }}
+                {{ page_view.last_name }}</h5>
+            <p class="small text-muted">
+                {%  if post.author.profile.id %}
+                    <a href="{% url 'profile_page' page_view.id %}">{{ page_view.first_name }} {{ page_viewlast_name }}</a>
+                {% endif %}
+                {% if page_view.website_url %}
+                  |  <a href="{{ page_view.website_url }}">Website</a>
+                {% endif %}
+                {% if page_view.facebool_url %}
+                  |  <a href="{{ page_view.facebool_url }}">Facebook</a>|
+                {% endif %}
+                {% if page_view.twitter_url %}
+                  |  <a href="{{ page_view.twitter_url }}">Twitter</a>|
+                {% endif %}
+                {% if page_view.instagram_url %}
+                  |  <a href="{{ page_view.instagram_url }}">Instagram</a>|
+                {% endif %}
+                {% if post.author.linkedin_url %}
+                  |  <a href="{{ page_view.linkedin_url }}">Linkedin</a>
+                {% endif %}
+            </p>
+            <p class="card-text">{{ page_view.bio }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}

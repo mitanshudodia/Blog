@@ -1,0 +1,21 @@
+{% extends 'theblog/base.html' %}
+{% block title %}
+    Edit Blog Post
+{% endblock %}
+{% block content %}
+    {% if user.id == post.author.id %}
+        <h1>Update Post..</h1>
+        <br>
+        <br>
+        <div class="form-group">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <button class="btn btn-secondary">Update</button>
+            </form>
+        </div>
+    {% else %}
+        <h2>You Don't have <STRONG>PERMISSION</STRONG> to edit this page</h2>
+    {% endif %}
+{% endblock %}

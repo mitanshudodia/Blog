@@ -1,0 +1,21 @@
+{% extends 'theblog/base.html' %}
+{% block title %}
+    Delete Blog Post
+{% endblock %}
+{% block content %}
+    {% if user.id == post.author.id %}
+        <h1>Delete Post..</h1>
+        <br>
+        <br>
+        <h3>Delete : {{ post.title }}</h3>
+        <div class="form-group">
+            <form method="post">
+                {% csrf_token %}
+                <strong>Are you sure?!</strong><br><br>
+                <button class="btn btn-secondary">Delete</button>
+            </form>
+        </div>
+    {% else %}
+        <h2>You Don't have <STRONG>PERMISSION</STRONG> to edit this page</h2>
+    {% endif %}
+{% endblock %}
